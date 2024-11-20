@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
+const BlacklistedToken = require('../models/BlacklistedToken');
 const { verifyToken } = require('../middleware/auth');
 
 // Register
@@ -59,12 +60,41 @@ router.post('/login', async (req, res) => {
     }
 });
 
-// Get current user info
-router.get('/me', verifyToken, (req, res) => {
-    res.json({
-        userId: req.user.userId,
-        role: req.user.role
-    });
+// Logout
+router.post('/logout', verifyToken, async (req, res) => {
+    try {
+        // Add token to blacklist
+        const blacklistedToken = new BlacklistedToken({
+            token: req.token
+        });
+        await blacklistedToken.save();
+        
+        res.json({ message: 'Logged out successfully' });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// Get current user info with session status
+router.get('/me', verifyToken, async (req, res) => {
+    try {
+        const user = await User.findById(req.user.userId)
+            .select('-password'); // Exclude password from response
+        
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        res.json({
+            userId: user._id,
+            email: user.email,
+            nickname: user.nickname,
+            role: user.role,
+            isActive: true
+        });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
 });
 
 module.exports = router; 
