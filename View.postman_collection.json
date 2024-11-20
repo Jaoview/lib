@@ -35,7 +35,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\":\"view@example.com\"\n    ,\"password\":\"password123\",\n    \"nickname\":\"view1234\"\n}",
+							"raw": "{\n    \"email\":\"user@example.com\"\n    ,\"password\":\"password123\",\n    \"nickname\":\"user\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -65,7 +65,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n        \"email\":\"view@example.com\"\n    ,\"password\":\"password123\"\n}",
+							"raw": "{\n    \"email\":\"user@example.com\"\n    ,\"password\":\"password123\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -91,17 +91,18 @@
 				{
 					"name": "Logout",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzNlMzliNTg5OTdmOTk1ZjcxMDExNjgiLCJyb2xlIjoidXNlciIsImlhdCI6MTczMjEzMzI5OCwiZXhwIjoxNzMyMjE5Njk4fQ.BK2R4tGNtUL2RTFW7E1aNbCbr31AvosOqkT4pFJrqvw",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\"email\":\"test@example.com\",\"password\":\"password123\"}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
 							"raw": "http://localhost:3000/api/auth/logout",
 							"protocol": "http",
@@ -131,7 +132,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzNlMmRhODU4Y2I1NmVlMGZmMzlkZmEiLCJyb2xlIjoidXNlciIsImlhdCI6MTczMjEyODIwOCwiZXhwIjoxNzMyMjE0NjA4fQ.EWlFQQF9_s2P9MF4a3MnPoxVGciHhgAlSJ-sn3xOtx0",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzNlMzliNTg5OTdmOTk1ZjcxMDExNjgiLCJyb2xlIjoidXNlciIsImlhdCI6MTczMjEzMTI3OSwiZXhwIjoxNzMyMjE3Njc5fQ.75sLqgph5R_pT8eP-MEWkOK0eGBvEYoS28-I4lhHQtY",
 									"type": "string"
 								}
 							]
@@ -330,7 +331,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzNlMzcxODg5OTdmOTk1ZjcxMDEwZmEiLCJyb2xlIjoidXNlciIsImlhdCI6MTczMjEzMDYwMCwiZXhwIjoxNzMyMjE3MDAwfQ.oXnL2Ol9oygdZ9_p3vzWprGqlEqkTqezCyCtp5-_h4s",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzNlMzliNTg5OTdmOTk1ZjcxMDExNjgiLCJyb2xlIjoidXNlciIsImlhdCI6MTczMjEzMTI3OSwiZXhwIjoxNzMyMjE3Njc5fQ.75sLqgph5R_pT8eP-MEWkOK0eGBvEYoS28-I4lhHQtY",
 									"type": "string"
 								}
 							]
@@ -366,7 +367,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzNlMzcxODg5OTdmOTk1ZjcxMDEwZmEiLCJyb2xlIjoidXNlciIsImlhdCI6MTczMjEzMDYwMCwiZXhwIjoxNzMyMjE3MDAwfQ.oXnL2Ol9oygdZ9_p3vzWprGqlEqkTqezCyCtp5-_h4s",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzNlMzliNTg5OTdmOTk1ZjcxMDExNjgiLCJyb2xlIjoidXNlciIsImlhdCI6MTczMjEzMTI3OSwiZXhwIjoxNzMyMjE3Njc5fQ.75sLqgph5R_pT8eP-MEWkOK0eGBvEYoS28-I4lhHQtY",
 									"type": "string"
 								}
 							]
@@ -375,7 +376,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"roomId\": \"673e317e537434dcd1d849be\",\n    \"date\": \"2024-03-20\",\n    \"bookingTime\": \"10:00-11:00\"\n}",
+							"raw": "{\n    \"roomId\": \"673e39de8997f995f7101170\",\n    \"date\": \"2024-03-20\",\n    \"bookingTime\": \"10:00-11:00\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -414,7 +415,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"status\": \"rejected\"  // or \"rejected\" or \"completed\"\n}",
+							"raw": "{\n    \"status\": \"approved\"  // or \"rejected\" or \"completed\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -422,7 +423,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/bookings/673e38aa8997f995f7101149/status",
+							"raw": "http://localhost:3000/api/bookings/673e3a618997f995f7101196/status",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -431,7 +432,7 @@
 							"path": [
 								"api",
 								"bookings",
-								"673e38aa8997f995f7101149",
+								"673e3a618997f995f7101196",
 								"status"
 							]
 						}
@@ -477,7 +478,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzNlMzcxODg5OTdmOTk1ZjcxMDEwZmEiLCJyb2xlIjoidXNlciIsImlhdCI6MTczMjEzMDYwMCwiZXhwIjoxNzMyMjE3MDAwfQ.oXnL2Ol9oygdZ9_p3vzWprGqlEqkTqezCyCtp5-_h4s",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzNlMzliNTg5OTdmOTk1ZjcxMDExNjgiLCJyb2xlIjoidXNlciIsImlhdCI6MTczMjEzMTI3OSwiZXhwIjoxNzMyMjE3Njc5fQ.75sLqgph5R_pT8eP-MEWkOK0eGBvEYoS28-I4lhHQtY",
 									"type": "string"
 								}
 							]
