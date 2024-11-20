@@ -1,0 +1,30 @@
+app.get('/countStatuses',async (req, res) => {
+  try {
+    const query = `
+      SELECT
+          SUM(JSON_UNQUOTE(JSON_EXTRACT(timeslots, '$[0]')) = 'Free') +
+          SUM(JSON_UNQUOTE(JSON_EXTRACT(timeslots, '$[1]')) = 'Free') +
+          SUM(JSON_UNQUOTE(JSON_EXTRACT(timeslots, '$[2]')) = 'Free') +
+          SUM(JSON_UNQUOTE(JSON_EXTRACT(timeslots, '$[3]')) = 'Free') AS free,
+          SUM(JSON_UNQUOTE(JSON_EXTRACT(timeslots, '$[0]')) = 'Pending') +
+          SUM(JSON_UNQUOTE(JSON_EXTRACT(timeslots, '$[1]')) = 'Pending') +
+          SUM(JSON_UNQUOTE(JSON_EXTRACT(timeslots, '$[2]')) = 'Pending') +
+          SUM(JSON_UNQUOTE(JSON_EXTRACT(timeslots, '$[3]')) = 'Pending') AS pending,
+          SUM(JSON_UNQUOTE(JSON_EXTRACT(timeslots, '$[0]')) = 'Disabled') +
+          SUM(JSON_UNQUOTE(JSON_EXTRACT(timeslots, '$[1]')) = 'Disabled') +
+          SUM(JSON_UNQUOTE(JSON_EXTRACT(timeslots, '$[2]')) = 'Disabled') +
+          SUM(JSON_UNQUOTE(JSON_EXTRACT(timeslots, '$[3]')) = 'Disabled') AS disabled,
+          SUM(JSON_UNQUOTE(JSON_EXTRACT(timeslots, '$[0]')) = 'Approve') +
+          SUM(JSON_UNQUOTE(JSON_EXTRACT(timeslots, '$[1]')) = 'Approve') +
+          SUM(JSON_UNQUOTE(JSON_EXTRACT(timeslots, '$[2]')) = 'Approve') +
+          SUM(JSON_UNQUOTE(JSON_EXTRACT(timeslots, '$[3]')) = 'Approve') AS approve
+      FROM room;
+    `;
+
+    const [results] = await con.promise().query(query);
+    res.json({ status: 'success', data: results[0] });
+  } catch (err) {
+    console.error('Database error:', err.message);
+    res.status(500).json({ error: 'Database query failed', details: err.message });
+  }
+});
